@@ -20,7 +20,10 @@ declare const global: {
 	scene: ScriptScene;
 };
 
-declare const script: any;
+declare const script: {
+	[index: string]: any;
+	createEvent(eventType: EventType): SceneEvent;
+};
 
 /**
  * Represents the Lens scene. Accessible through global.scene.
@@ -161,3 +164,41 @@ interface Asset extends SerializableWithUID {
 	name: string;
 }
 interface AudioTrackAsset extends Asset {}
+
+
+
+type EventType =
+| 'BrowsLoweredEvent'
+| 'BrowsRaisedEvent'
+| 'BrowsReturnedToNormalEvent'
+| 'CameraBackEvent'
+| 'CameraFrontEvent'
+| 'DelayedCallbackEvent'
+| 'FaceFoundEvent'
+| 'FaceLostEvent'
+| 'FaceTrackingEvent'
+| 'KissFinishedEvent'
+| 'KissStartedEvent'
+| 'LateUpdateEvent'
+| 'ManipulateEndEvent'
+| 'ManipulateStartEvent'
+| 'MouthClosedEvent'
+| 'MouthOpenedEvent'
+| 'SceneEvent'
+| 'SceneObjectEvent'
+| 'SmileFinishedEvent'
+| 'SmileStartedEvent'
+| 'SurfaceTrackingResetEvent'
+| 'TapEvent'
+| 'TouchEndEvent'
+| 'TouchMoveEvent'
+| 'TouchStartEvent'
+| 'TurnOffEvent'
+| 'TurnOnEvent'
+| 'UpdateEvent'
+;
+
+interface SceneEvent {
+	enabled: boolean;
+	bind(evCallback: () => void): void;
+}
