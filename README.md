@@ -6,6 +6,12 @@ Snapchat provides a Javascript interpreter and exposes a number of variables and
 
 > This type definition builds upon the official API, which it re-packages in a format that's easy to consume by production-grade applications.
 
+### Install using npm
+
+```
+npm i snapchat-lens-api
+```
+
 ### Feedback
 
 Any feedback? Please open an issue.
