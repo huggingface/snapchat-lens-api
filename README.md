@@ -12,6 +12,11 @@ Snapchat provides a Javascript interpreter and exposes a number of variables and
 npm i snapchat-lens-api
 ```
 
+If you're using Typescript in your build process, add the following to your `tsconfig.json`:
+```
+"types": [ "./node_modules/snapchat-lens-api" ]
+```
+
 ### Feedback
 
 Any feedback? Please open an issue.
