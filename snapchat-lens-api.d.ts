@@ -23,6 +23,7 @@ declare const global: {
 declare const script: {
 	[index: string]: any;
 	createEvent(eventType: EventType): SceneEvent;
+	api: { [index: string]: any };
 };
 
 /**

@@ -1,0 +1,28 @@
+{
+  "name": "snapchat-lens-api",
+  "version": "1.0.0",
+  "description": "Type definitions for Snapchat Lenses scripting",
+  "types": "./snapchat-lens-api.d.ts",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huggingface/snapchat-lens-api.git"
+  },
+  "keywords": [
+    "snapchat",
+    "lenses",
+    "snap",
+    "lens",
+    "studio"
+  ],
+  "author": "Julien Chaumond",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huggingface/snapchat-lens-api/issues"
+  },
+  "homepage": "https://github.com/huggingface/snapchat-lens-api#readme"
+}
