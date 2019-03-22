@@ -18,6 +18,10 @@ declare const global: {
 	 * which offers information and controls for the current scene.
 	 */
 	scene: ScriptScene;
+	/**
+	 * TweenManager
+	 */
+	tweenManager: TweenManager;
 };
 
 declare const script: {
@@ -157,6 +161,7 @@ interface AudioComponent extends Component {
 	setOnFinish(eventCallback: () => void): void;
 }
 interface AudioEffectComponent extends Component {}
+interface ScriptComponent      extends Component {}
 
 
 
@@ -213,4 +218,23 @@ type EventType =
 interface SceneEvent {
 	enabled: boolean;
 	bind(evCallback: () => void): void;
+}
+
+
+interface TweenManager {
+	startTween(
+		sceneObject: SceneObject,
+		tweenName:   string,
+		onComplete?: () => void,
+		onStart?:    () => void,
+		onStop?:     () => void,
+	): void;
+	stopTween  (sceneObject: SceneObject, tweenName: string): void;
+	pauseTween (sceneObject: SceneObject, tweenName: string): void;
+	resumeTween(sceneObject: SceneObject, tweenName: string): void;
+	resetObject(sceneObject: SceneObject, tweenName: string): void;
+	
+	getGenericTweenValue<T>(sceneObject: SceneObject, tweenName: string): T;
+	setStartValue<T>(sceneObject: SceneObject, tweenName: string, newStartValue: T): void;
+	setEndValue<T>  (sceneObject: SceneObject, tweenName: string, newEndValue: T): void;
 }
