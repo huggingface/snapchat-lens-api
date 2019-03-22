@@ -156,6 +156,8 @@ interface AudioComponent extends Component {
 	 */
 	setOnFinish(eventCallback: () => void): void;
 }
+interface AudioEffectComponent extends Component {}
+
 
 
 interface Asset extends SerializableWithUID {
@@ -164,8 +166,17 @@ interface Asset extends SerializableWithUID {
 	 */
 	name: string;
 }
-interface AudioTrackAsset extends Asset {}
-
+interface AnimationLayer    extends Asset {}
+interface AudioEffectAsset  extends Asset {}
+interface AudioTrackAsset   extends Asset {}
+interface BinAsset          extends Asset {}
+interface Font              extends Asset {}
+interface MarkerAsset       extends Asset {}
+interface Material          extends Asset {}
+interface ObjectPrefab      extends Asset {}
+interface RenderMesh        extends Asset {}
+interface SegmentationModel extends Asset {}
+interface Texture           extends Asset {}
 
 
 type EventType =
