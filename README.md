@@ -22,5 +22,5 @@ If you're using Typescript in your build process, add the following to your `tsc
 Any feedback? Please open an issue.
 
 <p style="text-align: center" align="center">
-	<img src="https://github.com/huggingface/snapchat-lens-api/blob/master/logo.png">
+	<img src="https://raw.githubusercontent.com/huggingface/snapchat-lens-api/master/logo.png">
 </p>
