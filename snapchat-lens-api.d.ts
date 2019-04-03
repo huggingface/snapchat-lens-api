@@ -117,6 +117,13 @@ interface Transform {
 }
 
 /**
+ * A two dimensional vector.
+ */
+interface vec2 {
+	x: number;
+	y: number;
+}
+/**
  * A three dimensional vector.
  */
 interface vec3 {
@@ -154,14 +161,49 @@ interface AudioComponent extends Component {
 	 * The audio asset currently assigned to play.
 	 */
 	audioTrack: AudioTrackAsset;
+	/**
+	 * Plays the current sound loops number of times. If loops is -1, the sound will repeat forever.
+	 */
 	play(loops: number): void;
 	/**
 	 * Sets the callback function to be called whenever this sound stops playing.
 	 */
 	setOnFinish(eventCallback: () => void): void;
+	/**
+	 * The length (in seconds) of the current sound assigned to play.
+	 */
+	duration: number;
+	/**
+	 * A volume multiplier for any sounds played by this AudioComponent.
+	 */
+	volume: number;
 }
 interface AudioEffectComponent extends Component {}
+interface Label extends SpriteVisual {
+	/**
+	 * Returns the potential width and height of the Label if it were to display the input text.
+	 */
+	measureText(text: string): vec2;
+	/**
+	 * The font size being used.
+	 */
+	size: number;
+	/**
+	 * The text displayed by the Label.
+	 */
+	text: string;
+}
 interface ScriptComponent      extends Component {}
+interface SpriteVisual         extends Component {
+	/**
+	 * Returns the width and height of the mesh the SpriteVisual is applied to.
+	 */
+	getMeshSize(): vec2;
+	/**
+	 * Which type of fill the sprite uses.
+	 */
+	fillMode: number;
+}
 
 
 
