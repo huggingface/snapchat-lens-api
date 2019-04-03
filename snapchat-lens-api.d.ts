@@ -27,6 +27,11 @@ declare const global: {
 declare const script: {
 	[index: string]: any;
 	createEvent(eventType: EventType): SceneEvent;
+	/**
+	 * The api property is a member property of the Script Component 
+	 * where you can store references to properties and functions 
+	 * that you'd like to make available to other Script Components.
+	 */
 	api: { [index: string]: any };
 };
 
@@ -131,7 +136,16 @@ interface vec3 {
 	y: number;
 	z: number;
 }
-
+/**
+ * A four dimensional vector.
+ */
+declare class vec4 {
+	x: number;
+	y: number;
+	z: number;
+	w: number;
+	constructor(...args: number[]);
+}
 
 
 /**
@@ -179,6 +193,38 @@ interface AudioComponent extends Component {
 	volume: number;
 }
 interface AudioEffectComponent extends Component {}
+interface ScriptComponent      extends Component {
+	/**
+	 * The api property is a member property of the Script Component 
+	 * where you can store references to properties and functions 
+	 * that you'd like to make available to other Script Components.
+	 */
+	api: { [index: string]: any };
+}
+interface MeshVisual           extends Component {
+	/**
+	 * Returns the number of Materials on the MeshVisual.
+	 */
+	getMaterialsCount(): number;
+	/**
+	 * Returns the first Material.
+	 */
+	mainMaterial: Material;
+	/**
+	 * Returns the mainPass of the mainMaterial.
+	 */
+	mainPass: Pass;
+}
+interface SpriteVisual         extends MeshVisual {
+	/**
+	 * Returns the width and height of the mesh the SpriteVisual is applied to.
+	 */
+	getMeshSize(): vec2;
+	/**
+	 * Which type of fill the sprite uses.
+	 */
+	fillMode: number;
+}
 interface Label extends SpriteVisual {
 	/**
 	 * Returns the potential width and height of the Label if it were to display the input text.
@@ -193,18 +239,6 @@ interface Label extends SpriteVisual {
 	 */
 	text: string;
 }
-interface ScriptComponent      extends Component {}
-interface SpriteVisual         extends Component {
-	/**
-	 * Returns the width and height of the mesh the SpriteVisual is applied to.
-	 */
-	getMeshSize(): vec2;
-	/**
-	 * Which type of fill the sprite uses.
-	 */
-	fillMode: number;
-}
-
 
 
 interface Asset extends SerializableWithUID {
@@ -279,4 +313,18 @@ interface TweenManager {
 	getGenericTweenValue<T>(sceneObject: SceneObject, tweenName: string): T;
 	setStartValue<T>(sceneObject: SceneObject, tweenName: string, newStartValue: T): void;
 	setEndValue<T>  (sceneObject: SceneObject, tweenName: string, newEndValue: T): void;
+}
+
+/**
+ * Controls how a mesh will get rendered. Each Pass acts as an interface for the shader 
+ * it’s associated with. Any properties on a Pass’s shader will automatically become 
+ * properties on that Pass. For example, if the shader defines a variable named baseColor, 
+ * a script would be able to access that property as Pass.baseColor.
+ * 
+ * @see https://lensstudio.snapchat.com/api/classes/Pass/
+ */
+interface Pass {
+	blendMode: number;
+	name:      string;
+	baseColor: vec4;
 }
