@@ -22,6 +22,11 @@ declare const global: {
 	 * TweenManager
 	 */
 	tweenManager: TweenManager;
+	/**
+	 * Returns the global PersistentStorageSystem, which allows data 
+	 * to persist between Lens sessions.
+	 */
+	persistentStorageSystem: PersistentStorageSystem;
 };
 
 declare const script: {
@@ -327,4 +332,43 @@ interface Pass {
 	blendMode: number;
 	name:      string;
 	baseColor: vec4;
+}
+
+/**
+ * Allows data to be stored and retrieved between Lens sessions. 
+ * In other words, data can be saved on device and loaded back in the next time 
+ * the Lens is opened. Can be accessed with global.persistentStorageSystem.
+ */
+interface PersistentStorageSystem {
+	store: GeneralDataStore;
+}
+interface GeneralDataStore {
+	/**
+	 * Clears all data stored in the General Data Store.
+	 */
+	clear(): void;
+	/**
+	 * Returns a boolean value stored under the given key, or false if none exists.
+	 */
+	getBool(key: string): boolean;
+	/**
+	 * Returns a floating point value stored under the given key, or 0 if none exists.
+	 */
+	getFloat(key: string): number;
+	/**
+	 * Returns true if a value is being stored under the given key.
+	 */
+	has(key: string): boolean;
+	/**
+	 * Stores a boolean value under the given key.
+	 */
+	putBool(key: string, value: boolean): void;
+	/**
+	 * Stores a floating point value under the given key.
+	 */
+	putFloat(key: string, value: number): void;
+	/**
+	 * Removes the value being stored under the given key. If no value exists under the key, nothing will happen.
+	 */
+	remove(key: string): void;
 }
