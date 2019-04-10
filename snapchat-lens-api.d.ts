@@ -220,6 +220,9 @@ interface MeshVisual           extends Component {
 	 */
 	mainPass: Pass;
 }
+/**
+ * @deprecated in Lens Studio 2.0
+ */
 interface SpriteVisual         extends MeshVisual {
 	/**
 	 * Returns the width and height of the mesh the SpriteVisual is applied to.
@@ -230,6 +233,11 @@ interface SpriteVisual         extends MeshVisual {
 	 */
 	fillMode: number;
 }
+interface Image extends MeshVisual {
+}
+/**
+ * @deprecated in Lens Studio 2.0
+ */
 interface Label extends SpriteVisual {
 	/**
 	 * Returns the potential width and height of the Label if it were to display the input text.
@@ -244,6 +252,26 @@ interface Label extends SpriteVisual {
 	 */
 	text: string;
 }
+interface Text extends MeshVisual {
+	/**
+	 * Text string to be drawn.
+	 */
+	text: string;
+}
+interface AnimationMixer extends Component {
+	/**
+	 * Starts playing animation layers named name, or all layers if name is empty. 
+	 * The animation will start with an offset of offset seconds. 
+	 * The animation will play cycles times, or loop forever if cycles is -1.
+	 */
+	start(name: string, offset: number, cycles: number): void;
+	/**
+	 * Stops any animation layer with name name, or all layers if name is empty.
+	 */
+	stop(name: string): void;
+}
+
+
 
 
 interface Asset extends SerializableWithUID {
