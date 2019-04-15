@@ -27,6 +27,11 @@ declare const global: {
 	 * to persist between Lens sessions.
 	 */
 	persistentStorageSystem: PersistentStorageSystem;
+	/**
+	 * Returns the global UserContextSystem, which provides information
+	 * about the user such as display name, birthday, and even current weather.
+	 */
+	userContextSystem: UserContextSystem;
 };
 
 declare const script: {
@@ -400,3 +405,62 @@ interface GeneralDataStore {
 	 */
 	remove(key: string): void;
 }
+
+/**
+ * Provides information about the user such as display name, birthday, 
+ * and current weather. Accessible through global.userContextSystem.
+ *
+ * All callbacks will execute as soon as the requested information is available. 
+ * In some rare cases, the requested information may be completely unavailable, 
+ * and the callback will never occur.
+ * 
+ * Note that formatted or localized strings may appear differently to users 
+ * depending on their region.
+ */
+interface UserContextSystem {
+	/**
+	 * Provides the user’s current altitude as a localized string.
+	 */
+	requestAltitudeFormatted(callback: (arg0: string) => void): void;
+	/**
+	 * Provides the user’s current altitude in meters.
+	 */
+	requestAltitudeInMeters(callback: (arg0: number) => void): void;
+	/**
+	 * Provides the user’s birth date as a Date object.
+	 */
+	requestBirthdate(callback: (arg0: Date) => void): void;
+	/**
+	 * Provides the user’s birth date as localized string.
+	 */
+	requestBirthdateFormatted(callback: (arg0: string) => void): void;
+	/**
+	 * Provides the name of the city the user is currently located in.
+	 */
+	requestCity(callback: (arg0: string) => void): void;
+	/**
+	 * Provides the user’s display name.
+	 */
+	requestDisplayName(callback: (arg0: string) => void): void;
+	/**
+	 * Provides the user’s current temperature in celsius.
+	 */
+	requestTemperatureCelsius(callback: (arg0: number) => void): void;
+	/**
+	 * Provides the user’s current temperature in fahrenheit.
+	 */
+	requestTemperatureFahrenheit(callback: (arg0: number) => void): void;
+	/**
+	 * Provides the user’s current temperature as a localized string.
+	 */
+	requestTemperatureFormatted(callback: (arg0: string) => void): void;
+	/**
+	 * Provdes the user’s current weather condition.
+	 */
+	requestWeatherCondition(callback: (weathercondition: object) => void): void;
+	/**
+	 * Provides the user’s current weather condition as a localized string.
+	 */
+	requestWeatherLocalized(callback: (arg0: string) => void): void;
+}
+
