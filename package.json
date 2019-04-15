@@ -1,6 +1,6 @@
 {
   "name": "snapchat-lens-api",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Type definitions for Snapchat Lenses scripting",
   "types": "./snapchat-lens-api.d.ts",
   "dependencies": {},
